@@ -13,20 +13,22 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## GitHub Pages (production)
 
-The app is built as a **static export** and deployed with **GitHub Actions**. Your site should load at:
+Only the **built** site (the `out/` folder) is published. Source code stays on `main` / `master`; the **`gh-pages`** branch holds static HTML/CSS/JS only.
 
-**https://wingsuiter101.github.io/blq-intra/**
+Live URL: **https://wingsuiter101.github.io/blq-intra/**
 
-### If you only see this README (or a generic Next.js readme) at that URL
+### One-time GitHub setting
 
-The Pages source is almost certainly wrong. Fix it once:
+1. Repo → **Settings** → **Pages**
+2. **Build and deployment** → **Source**: **Deploy from a branch**
+3. **Branch**: **`gh-pages`** → **Folder**: **`/ (root)`** → Save
 
-1. Open the repo on GitHub → **Settings** → **Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
-3. Open the **Actions** tab and confirm the latest **Deploy to GitHub Pages** workflow finished green.
-4. If the workflow was never run, push a small commit to `main` / `master` or use **Run workflow**.
+After the first workflow run (or manual deploy), the `gh-pages` branch appears and the site loads instead of this README.
 
-Until Actions deploys the `out/` folder from the workflow, GitHub will keep serving the repo root (mostly `README.md`), which looks like “the readme” instead of the app.
+### How deploy works
+
+- **CI**: On every push to `main` / `master`, GitHub Actions runs `npm run build:gh-pages` and pushes **`out/`** to the **`gh-pages`** branch (source code is not copied there).
+- **Manual**: `npm run deploy:gh-pages` (builds, then runs the `gh-pages` CLI to push `out/` to `origin gh-pages`).
 
 ### Content updates (CMS)
 
@@ -38,4 +40,5 @@ Site copy lives in `src/content/site.json`. After editing, use **/admin/cms** lo
 | -------------------- | -------------------------------------------- |
 | `npm run dev`        | Development server                           |
 | `npm run build`      | Production build (no static export)          |
-| `npm run build:gh-pages` | Same export as CI (base path `/blq-intra`) |
+| `npm run build:gh-pages` | Static export for Pages (base path `/blq-intra`) |
+| `npm run deploy:gh-pages` | Build + push `out/` to `gh-pages` branch (manual) |
