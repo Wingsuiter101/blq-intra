@@ -1,8 +1,6 @@
 import { Calendar, Clock, Headphones, Shield, Sparkles, User } from "lucide-react"
 import { getSiteContent } from "@/lib/site-content"
 
-export const dynamic = "force-dynamic"
-
 function RuleCard({
   icon: Icon,
   title,

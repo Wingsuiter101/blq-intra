@@ -2,8 +2,6 @@ import { ScriptBlock } from "@/components/script-block"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { getSiteContent } from "@/lib/site-content"
 
-export const dynamic = "force-dynamic"
-
 export default async function ClientComms() {
   const { clientComms } = await getSiteContent()
 

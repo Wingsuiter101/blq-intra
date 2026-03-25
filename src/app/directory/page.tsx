@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import { EmailDirectoryTable } from "@/components/email-directory-table"
 import { getSiteContent } from "@/lib/site-content"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
   title: "Email directory | BLQ Portal",
   description: "Central repository of Brandlogiq team emails and roles.",

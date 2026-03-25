@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "fs/promises"
+import { readFile } from "fs/promises"
 import { join } from "path"
 import type { SiteContent } from "@/lib/site-types"
 import { DEFAULT_SITE_CONTENT } from "@/lib/site-defaults"
@@ -30,6 +30,7 @@ function normalizeSiteContent(raw: unknown): SiteContent {
   }
 }
 
+/** Loads site content at build time (static export) or request time (Node server). */
 export async function getSiteContent(): Promise<SiteContent> {
   try {
     const text = await readFile(SITE_JSON, "utf-8")
@@ -37,13 +38,4 @@ export async function getSiteContent(): Promise<SiteContent> {
   } catch {
     return DEFAULT_SITE_CONTENT
   }
-}
-
-export async function saveSiteContent(next: SiteContent): Promise<void> {
-  const normalized = normalizeSiteContent(next)
-  await writeFile(SITE_JSON, JSON.stringify(normalized, null, 2), "utf-8")
-}
-
-export function getSiteJsonPath(): string {
-  return SITE_JSON
 }

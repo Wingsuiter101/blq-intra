@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import type { SiteContent, TeamDirectoryRow, WeeklyRotaRow } from "@/lib/site-types"
@@ -23,70 +23,19 @@ function emptyDirectoryRow(): TeamDirectoryRow {
   return { name: "", designation: "", email: "", note: "" }
 }
 
-export function CmsAdminForm() {
-  const [data, setData] = useState<SiteContent | null>(null)
-  const [secret, setSecret] = useState("")
-  const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
+export function CmsAdminForm({ initialData }: { initialData: SiteContent }) {
+  const [data, setData] = useState<SiteContent>(initialData)
   const [message, setMessage] = useState<string | null>(null)
 
-  const load = useCallback(async () => {
-    setLoading(true)
-    setMessage(null)
-    try {
-      const res = await fetch("/api/cms", { cache: "no-store" })
-      if (!res.ok) throw new Error("Failed to load")
-      const json = (await res.json()) as SiteContent
-      setData(json)
-    } catch {
-      setMessage("Could not load site content.")
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    void load()
-  }, [load])
-
-  async function save() {
-    if (!data) return
-    if (!secret.trim()) {
-      setMessage("Enter the CMS secret before saving.")
-      return
-    }
-    setSaving(true)
-    setMessage(null)
-    try {
-      const res = await fetch("/api/cms", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${secret.trim()}`,
-        },
-        body: JSON.stringify(data),
-      })
-      const j = (await res.json().catch(() => ({}))) as { error?: string }
-      if (!res.ok) throw new Error(j.error ?? res.statusText)
-      setMessage("Saved. Public pages will show updated content after refresh.")
-    } catch (e) {
-      setMessage(e instanceof Error ? e.message : "Save failed.")
-    } finally {
-      setSaving(false)
-    }
-  }
-
-  if (loading || !data) {
-    return (
-      <div className="mx-auto max-w-5xl space-y-4">
-        <p className="text-white/50">{loading ? "Loading CMS…" : "Could not load content."}</p>
-        {!loading && (
-          <Button type="button" variant="outline" onClick={() => void load()}>
-            Retry
-          </Button>
-        )}
-      </div>
-    )
+  function downloadSiteJson() {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = "site.json"
+    a.click()
+    URL.revokeObjectURL(url)
+    setMessage("Download started. Replace src/content/site.json in the repo, then commit and push.")
   }
 
   const setOnCall = (patch: Partial<SiteContent["onCall"]>) =>
@@ -98,10 +47,10 @@ export function CmsAdminForm() {
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Internal</p>
         <h1 className="text-3xl font-black uppercase tracking-tighter md:text-4xl">Site CMS</h1>
         <p className="max-w-2xl text-sm font-light text-white/55">
-          Edit weekly on-call rota, email directory, and client comms copy. Changes are stored in{" "}
-          <code className="font-mono text-xs text-white/70">src/content/site.json</code> on the server. Set{" "}
-          <code className="font-mono text-xs text-white/70">CMS_SECRET</code> in{" "}
-          <code className="font-mono text-xs text-white/70">.env.local</code> to enable saving.
+          Edit weekly on-call rota, email directory, and client comms copy. Download{" "}
+          <code className="font-mono text-xs text-white/70">site.json</code> and replace{" "}
+          <code className="font-mono text-xs text-white/70">src/content/site.json</code> in the repo, then commit.
+          GitHub Pages rebuilds from the latest content on push.
         </p>
       </header>
 
@@ -665,27 +614,13 @@ export function CmsAdminForm() {
       </Tabs>
 
       <div className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-end">
-        <div className="flex-1">
-          <label className={label}>CMS secret</label>
-          <input
-            type="password"
-            className={input}
-            autoComplete="off"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            placeholder="Same value as CMS_SECRET on the server"
-          />
-        </div>
-        <Button type="button" disabled={saving} onClick={() => void save()}>
-          {saving ? "Saving…" : "Save changes"}
+        <Button type="button" onClick={downloadSiteJson}>
+          Download site.json
         </Button>
       </div>
 
       {message && (
-        <p
-          className={`text-sm ${message.startsWith("Saved") ? "text-primary" : "text-destructive"}`}
-          role="status"
-        >
+        <p className="text-sm text-primary" role="status">
           {message}
         </p>
       )}

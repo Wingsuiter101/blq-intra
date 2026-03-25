@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:gh-pages": "cross-env STATIC_EXPORT=1 NEXT_PUBLIC_BASE_PATH=/blq-intra next build",
     "start": "next start",
     "lint": "eslint",
     "cms:seed": "tsx scripts/seed-site-json.ts"
@@ -27,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
