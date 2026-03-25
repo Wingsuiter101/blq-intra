@@ -1,0 +1,131 @@
+import type { ClientCommsFaqItem, ClientCommsTemplate } from "@/lib/site-types"
+
+export const DEFAULT_CLIENT_COMMS_TEMPLATES: ClientCommsTemplate[] = [
+  {
+    title: "General Announcement (2-Week Notice)",
+    fullWidth: true,
+    content: `Subject: An update we're excited to share: our new rhythm at BLQ
+
+Hi [Client Name],
+
+We're writing to share something important: starting [Date], Brandlogiq will move to a five-day week, with core hours Monday through Friday, 9:00 AM to 6:00 PM.
+
+We're making this change because we believe well-rested teams do their best work: more focus, clearer thinking, and creative that stays sharp for you. Nothing about our commitment to your brand changes; we're simply aligning how we operate so we can serve you sustainably over the long term.
+
+What you can expect:
+• Day-to-day collaboration and deliverables will follow our Monday-Friday rhythm.
+• Saturdays are a full rest day for the team so everyone returns fresh on Monday.
+• Sundays remain available for genuine, time-sensitive situations through our small on-call team. Your account lead can explain what qualifies.
+
+We're giving two weeks' notice so we can adjust any workflows together and answer any questions you might have. We're grateful for your partnership and happy to find time to walk through what this means for your account specifically.
+
+Warmly,
+[Your Name]`,
+  },
+  {
+    title: "WhatsApp / Slack Quick Update",
+    content: `Hi [Client Name], quick note from BLQ. From [Date] we're on a Mon-Fri, 9-6 schedule so the team can recharge and keep delivering strong work for you. Weekends are quieter by design; if something truly urgent comes up on a Sunday, your PM can guide you. Happy to find a moment to chat if helpful!`,
+  },
+  {
+    title: "Formal Breakup / Transition Email",
+    fullWidth: true,
+    dangerTag: "Last resort",
+    whenToUse: `Use only after the steps below. This email is for rare situations where working styles truly don't align.
+
+Step 1: We've shared the change: the General Announcement has gone out and the client has had a chance to respond.
+
+Step 2: We've listened: there's been at least one thoughtful follow-up (email or call) with your Account Director, and it's clear the client still needs a level of weekend coverage we can't offer in good faith.
+
+Step 3: Leadership alignment: Management and your AD agree in writing that a respectful transition is the right path.
+
+After that, this template helps you close the chapter with care and clarity.`,
+    content: `Subject: A thoughtful next step for our partnership
+
+Hi [Client Name],
+
+I hope you're well.
+
+We've shared that Brandlogiq is moving to a Monday-Friday rhythm (9 AM-6 PM) from [Date], with Sunday support reserved for exceptional situations. We've really valued working with you, and we want to be honest: your team appears to need consistent weekend coverage in a way our new model isn't built to support long term, and we wouldn't want to overpromise or let you down.
+
+In situations like this, we've found it kindest to be upfront. We believe you may be better served by a partner who can match a six- or seven-day support model, and we'd like to help make any transition as smooth as possible.
+
+Over the next [X weeks/days], we're here to organise a thoughtful handover: files, contacts, and anything that helps you land well with your next team. If you'd like to discuss timing or format, just reply and we'll align.
+
+With appreciation for the work we've done together,
+
+[Your Name]`,
+  },
+]
+
+export const DEFAULT_CLIENT_COMMS_FAQ: ClientCommsFaqItem[] = [
+  {
+    question: 'Client: "Why are you working less? Will my deliverables be delayed?"',
+    answer:
+      '"That\'s a fair question. Thank you for asking. We\'re not reducing how much we care about your work; we\'re organising our week so the team can focus deeply Monday to Friday. Timelines and commitments we\'ve agreed with you stay in place, and we\'ll flag early if anything ever needs adjusting. The goal is actually steadier output, not less."',
+  },
+  {
+    question: 'Client: "What if I have an absolute emergency on a Sunday?"',
+    answer:
+      '"We absolutely want you to reach out if something truly can\'t wait, for example a live site or campaign issue, or a serious reputational risk. We have a small Sunday on-call team for exactly that. For everything else, we\'ll pick it up first thing Monday so the work gets the full attention it deserves."',
+  },
+  {
+    question: 'Client: "We need a team that works 6 days a week. We can\'t accept this."',
+    answer:
+      '"I hear you, and I appreciate you being direct. Your operating model sounds like it genuinely needs weekend coverage, and I want to be honest with you: our agency is moving to a five-day rhythm across the board. If that doesn\'t fit how you need to run, we\'d rather help you transition gracefully than leave you in a mismatch. I\'m happy to involve [Account Director] to talk through options and timing."',
+  },
+  {
+    question: 'Client: "Can we have a quick sync on Saturday morning?"',
+    answer:
+      '"I\'d love to find time that works. Could we look at Monday or a slot late Friday within our core hours? Saturdays are when the team fully switches off so we can come back sharp for you. If something urgent comes up over the weekend, your PM can point you to the Sunday on-call path."',
+  },
+  {
+    question: 'Client: "Will our retainer fee decrease since you\'re working fewer days?"',
+    answer:
+      '"Our fees reflect the scope of work, the seniority on your account, and the outcomes we\'re delivering, not counting Saturdays. You should continue to see the same level of care and output; we\'re simply organising the week differently. If you\'d ever like to revisit scope, we can always do that together with finance and your AD."',
+  },
+  {
+    question: 'Client: "We need sign-off or assets by Monday 8 AM. Can you guarantee that?"',
+    answer:
+      '"We can usually make Monday morning deadlines work beautifully if we align early in the week, ideally with brief and feedback locked by Thursday so we can finalise Friday within our core hours. If something lands very late on Friday, we\'ll pick it up Monday morning unless it\'s escalated as a true Sunday emergency. Happy to calendar it with you so nothing surprises either side."',
+  },
+  {
+    question: 'Client: "What actually counts as a Sunday emergency vs something we should wait for Monday?"',
+    answer:
+      '"Happy to clarify. Sunday is really for situations where waiting until Monday would meaningfully hurt the business: something customer-facing is down, there\'s serious legal or PR risk, or a launch literally can\'t proceed. Smaller tweaks or nice-to-have changes are usually better served Monday when the full team is in. If you\'re unsure, message the on-call line and your PM will help sort it with you, no judgement."',
+  },
+  {
+    question: 'Client: "We\'re in a different time zone. Doesn\'t that mean you need to work our weekends?"',
+    answer:
+      '"Great question. We work hard to find overlapping hours for calls and reviews during our Nepal core time, and we plan async handoffs so you wake up to progress where we can. Our weekend rhythm is the same agency-wide; if you ever need Sunday support for something critical, we\'ll route it through the on-call channel so you\'re looked after without burning out the whole team."',
+  },
+  {
+    question: 'Client: "We always had weekend access. This feels like we\'re getting less."',
+    answer:
+      '"I understand why it might feel that way. Thank you for saying it. What we\'re trying to protect is the quality and consistency of what you get Monday to Friday, not to pull back on care. The commitments in your scope stay what they are; we\'ll just plan earlier so big moments don\'t rely on Saturday fire drills. If something feels off, we want to hear it and adjust the plan together."',
+  },
+  {
+    question: 'Client: "Can we pay extra for dedicated weekend coverage on our account?"',
+    answer:
+      '"I really appreciate you asking. It means you value the relationship. Our model is consistent across clients: we don\'t offer separate six-day retainers or private weekend teams. If your needs truly require that cadence, the kindest thing might be to explore partners who specialise in it, and we\'d support a careful handover. I\'ll loop in [AD] so we can talk through it openly."',
+  },
+  {
+    question: 'Client: "Who do I contact on Sunday? Can I WhatsApp the designer directly?"',
+    answer:
+      '"The smoothest path is to reach your PM or the official on-call channel first. They can see the full picture and bring in design if it\'s truly needed. That way nothing gets lost between threads and everyone gets the right context. We\'re grateful when clients help us keep it that way."',
+  },
+  {
+    question: 'Client: "We need to post on social all weekend. Will someone be watching comments?"',
+    answer:
+      '"We\'ll help you queue what we can before Friday so the weekend feels calm. For anything that looks like a genuine crisis on Sunday, the on-call path is there. Day-to-day community replies we\'ll usually pick back up Monday unless we\'ve agreed something different for a specific launch. Happy to plan that together."',
+  },
+  {
+    question: 'Client: "Does our contract or SLA change? Do we need a new addendum?"',
+    answer:
+      '"We\'re moving everyone to the same operating model in a transparent way. If your agreement needs a small addendum, for example response windows, your Account Director will walk you through it clearly so there are no surprises. We\'re here to make that feel straightforward."',
+  },
+  {
+    question: 'Client: "We sent feedback Friday at 11 PM. Why wasn\'t it done Saturday?"',
+    answer:
+      '"Thank you for sending that. We saw it. Anything that arrives after hours joins the queue for the next business day so the right people can review it fresh. If you ever have a hard deadline, let\'s flag it earlier in the week and we\'ll build the buffer together so you\'re never left guessing."',
+  },
+]
