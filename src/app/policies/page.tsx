@@ -76,7 +76,7 @@ export default async function Policies() {
               </ul>
               <div className="mt-8 p-6 border border-primary/30 bg-primary/5">
                 <strong className="text-primary uppercase tracking-widest text-sm block mb-2">Important</strong>
-                Replacement-day comp-offs are removed. Any exception requires pre-approval from HR and management.
+                Any exception requires pre-approval from HR and management.
               </div>
             </AccordionContent>
           </AccordionItem>
