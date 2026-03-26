@@ -1,7 +1,10 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Download } from "lucide-react"
+import { requireSiteAuth } from "@/lib/auth-guard"
 
-export default function Policies() {
+export default async function Policies() {
+  await requireSiteAuth("/policies")
+
   return (
     <div className="max-w-4xl mx-auto space-y-16 animate-in fade-in duration-700">
       <div className="space-y-4">
@@ -25,7 +28,7 @@ export default function Policies() {
                 Team, we are thrilled to announce that effective immediately, Brandlogiq (BLQ) is officially transitioning from a 6-day to a 5-day work week. Our new core operating hours will be Monday through Friday, 9:00 AM to 6:00 PM.
               </p>
               <p>
-                This change is designed to give you more time to rest, recharge, and pursue personal passions. We believe that better rest leads to better work. While Saturdays will be completely off, Sundays will operate with an on-call skeleton crew to handle critical client emergencies.
+                This change is designed to give you more time to rest, recharge, and pursue personal passions. We believe that better rest leads to better work. While Saturdays will be completely off, Sundays now operate as a half-day emergency window from 11:00 AM to 3:00 PM.
               </p>
               <p>
                 Let&apos;s make this transition smooth and show our clients that our efficiency and creativity are stronger than ever.
@@ -60,23 +63,20 @@ export default function Policies() {
 
           <AccordionItem value="comp-off" className="border-white/10 py-4">
             <AccordionTrigger className="text-2xl font-bold tracking-tight hover:text-primary transition-colors">
-              Comp-Off Policy
+              Sunday Duty Policy
             </AccordionTrigger>
             <AccordionContent className="text-lg text-white/60 space-y-6 leading-relaxed pt-4 font-light">
               <p>
-                For those assigned to the Sunday Skeleton Crew or required to work on weekends for approved emergencies, the following Compensatory Off (Comp-Off) rules apply:
+                For those assigned to Sunday coverage, the working requirement is a fixed half-day emergency support window:
               </p>
               <ul className="list-disc pl-6 space-y-4 marker:text-primary">
                 <li>
-                  <strong className="text-white">Half-Day Comp-Off:</strong> Granted for approved weekend work lasting under 4 hours.
-                </li>
-                <li>
-                  <strong className="text-white">Full-Day Comp-Off:</strong> Granted for approved weekend work lasting over 4 hours.
+                  <strong className="text-white">Sunday Duty Window:</strong> <strong className="text-primary">11:00 AM to 3:00 PM</strong>.
                 </li>
               </ul>
               <div className="mt-8 p-6 border border-primary/30 bg-primary/5">
-                <strong className="text-primary uppercase tracking-widest text-sm block mb-2">Important</strong> 
-                All Comp-Offs must be utilized within <strong className="text-white">30 days</strong> of accrual. They cannot be encashed or carried forward beyond this period.
+                <strong className="text-primary uppercase tracking-widest text-sm block mb-2">Important</strong>
+                Replacement-day comp-offs are removed. Any exception requires pre-approval from HR and management.
               </div>
             </AccordionContent>
           </AccordionItem>
@@ -104,7 +104,7 @@ export default function Policies() {
             </AccordionTrigger>
             <AccordionContent className="text-lg text-white/60 space-y-6 leading-relaxed pt-4 font-light">
               <p>
-                Please download, sign, and return your updated contract addendum reflecting the new working hours and comp-off structure.
+                Please download, sign, and return your updated contract addendum reflecting the new working hours and Sunday duty structure.
               </p>
               <a href="#" className="group inline-flex items-center gap-4 p-6 border border-white/10 hover:border-primary transition-colors w-full md:w-auto">
                 <div className="flex-1">

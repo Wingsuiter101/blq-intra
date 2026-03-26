@@ -11,12 +11,12 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     pageTitle: "On-call roster",
     pageSubtitle:
       'Sunday skeleton crew by week: who covers each week, how escalation works, and what "on-call" means at BLQ.',
-    responseTime: "30 to 60 minutes",
+    responseTime: "11:00 AM to 3:00 PM",
     crewSummary: "1 PM + 1 Designer",
     weeklySectionTitle: "Weekly rota",
     weeklySectionSubtitle: "Who is on",
     rotaFootnote:
-      "Same PM and Designer for every Sunday in that week. Update via the internal CMS when HR finalises names.",
+      "Same PM and Designer for every Sunday in that week. Sunday duty window is half-day: 11:00 AM to 3:00 PM.",
   },
   weeklyRota: [
     {

@@ -13,6 +13,7 @@ const nav = [
   { name: "On-Call Roster", href: "/on-call-roster" },
   { name: "IT & Ops", href: "/it-ops" },
   { name: "Emails", href: "/directory" },
+  { name: "Admin", href: "/admin/cms" },
 ]
 
 export function TopNav() {
@@ -40,6 +41,9 @@ export function TopNav() {
               {item.name}
             </Link>
           ))}
+          <form action="/auth/logout" method="post">
+            <button className="transition-colors text-white/50 hover:text-primary">Logout</button>
+          </form>
         </nav>
 
         {/* Mobile Toggle */}
@@ -67,6 +71,11 @@ export function TopNav() {
               {item.name}
             </Link>
           ))}
+          <form action="/auth/logout" method="post">
+            <button className="block text-lg font-medium tracking-wide uppercase transition-colors text-white/50 hover:text-primary">
+              Logout
+            </button>
+          </form>
         </div>
       )}
     </header>

@@ -1,5 +1,6 @@
 import { Calendar, Clock, Headphones, Shield, Sparkles, User } from "lucide-react"
 import { getSiteContent } from "@/lib/site-content"
+import { requireSiteAuth } from "@/lib/auth-guard"
 
 function RuleCard({
   icon: Icon,
@@ -33,6 +34,7 @@ function RosterSlot({ label, name }: { label: string; name: string }) {
 }
 
 export default async function OnCallRoster() {
+  await requireSiteAuth("/on-call-roster")
   const content = await getSiteContent()
   const sd = content.strategicDirector
   const { onCall } = content
@@ -100,8 +102,8 @@ export default async function OnCallRoster() {
 
           <RuleCard icon={Calendar} title="The expectation">
             <p>
-              Phones on, laptop nearby. You are <span className="text-primary">not</span> chained to a desk. Maintain a{" "}
-              <span className="text-white">{onCall.responseTime}</span> response when called.
+              Sunday support runs as a half-day duty window: <span className="text-white">{onCall.responseTime}</span>.
+              Be available in that window for genuine emergencies.
             </p>
           </RuleCard>
 
@@ -155,20 +157,15 @@ export default async function OnCallRoster() {
 
       <section className="mt-12 md:mt-16">
         <div className="border border-primary/25 bg-linear-to-br from-primary/8 to-transparent px-5 py-6 sm:px-8 sm:py-8">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Comp-off reminder</h3>
+          <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Sunday requirement</h3>
           <ul className="mt-4 space-y-2 text-sm font-light text-white/70">
             <li className="flex gap-2">
               <span className="text-primary">-</span>
-              Under 4 hours on approved Sunday work = <strong className="font-medium text-white">half-day</strong> comp-off.
-            </li>
-            <li className="flex gap-2">
-              <span className="text-primary">-</span>
-              Over 4 hours = <strong className="font-medium text-white">full-day</strong> comp-off.
+              Sunday duty is a <strong className="font-medium text-white">half-day</strong> window:{" "}
+              <strong className="font-medium text-white">11:00 AM to 3:00 PM</strong>.
             </li>
           </ul>
-          <p className="mt-4 text-xs text-white/45">
-            Use within 30 days. Log hours in the HR portal by Monday end of day.
-          </p>
+          <p className="mt-4 text-xs text-white/45">Follow HR policy for approved exception handling.</p>
         </div>
       </section>
     </div>

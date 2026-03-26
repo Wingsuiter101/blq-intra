@@ -1,7 +1,10 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { requireSiteAuth } from "@/lib/auth-guard"
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  await requireSiteAuth("/")
+
   return (
     <div className="max-w-6xl mx-auto space-y-32 animate-in fade-in duration-700">
       
@@ -34,8 +37,8 @@ export default function Dashboard() {
           <p className="text-5xl md:text-6xl font-light tracking-tighter">Skeleton Crew</p>
           <div className="space-y-2 text-white/50 text-lg font-light">
             <p><strong className="text-white font-medium">Saturdays strictly off.</strong></p>
-            <p>Sundays on-call for critical emergencies only.</p>
-            <p>30-60 minute response expectation.</p>
+            <p>Sundays: half-day emergency window only.</p>
+            <p>11:00 AM to 3:00 PM duty schedule.</p>
           </div>
         </div>
       </section>

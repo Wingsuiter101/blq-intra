@@ -1,7 +1,10 @@
 import { AlertTriangle, Server, Mail, FileCheck2 } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { requireSiteAuth } from "@/lib/auth-guard"
 
-export default function ITOps() {
+export default async function ITOps() {
+  await requireSiteAuth("/it-ops")
+
   return (
     <div className="max-w-5xl mx-auto space-y-24 animate-in fade-in duration-700">
       <div className="space-y-4">

@@ -1,8 +1,10 @@
 import { ScriptBlock } from "@/components/script-block"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { getSiteContent } from "@/lib/site-content"
+import { requireSiteAuth } from "@/lib/auth-guard"
 
 export default async function ClientComms() {
+  await requireSiteAuth("/client-comms")
   const { clientComms } = await getSiteContent()
 
   return (

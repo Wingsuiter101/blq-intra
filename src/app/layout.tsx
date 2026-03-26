@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "Internal portal for BLQ employees. 5 Days. Better Work. Better Rest.",
 }
 
+/** Revalidate CMS-driven pages periodically on server hosts (e.g. Vercel). */
+export const revalidate = 60
+
 export default function RootLayout({
   children,
 }: Readonly<{
